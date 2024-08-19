@@ -1,0 +1,15 @@
+<mat-card class="custom-card">
+    <mat-card-content>
+      <p>This app is already live. Would you like to proceed with the live website?</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-button color="secondary" (click)="proceed()">
+        <mat-icon>open_in_new</mat-icon>
+        Proceed
+      </button>
+      <button mat-button color="warn" (click)="cancel($event)">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  

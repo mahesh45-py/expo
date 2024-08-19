@@ -41,7 +41,7 @@
       <div class="phone-container">
         <div class="phone-background"></div>
         
-        <img [lazyLoad]="selectedScreen" [defaultImage]="imageUrl" *ngIf="project.isMobileOnly && selectedScreen!='live'" [src]="selectedScreen" alt="">
+        <img  [lazyLoad]="selectedScreen" [defaultImage]="imageUrl" *ngIf="project.isMobileOnly && selectedScreen!='live'" [src]="selectedScreen" alt="">
         <iframe *ngIf="project.isLive && project.isMobileOnly && selectedScreen=='live'" [src]="safeWs" style="font-size: 0.8em;"></iframe>
         
       </div>
@@ -51,8 +51,8 @@
   <div *ngIf="isMobile" class="samples-section">
     
     <div class="sample-grid">
-      <div *ngFor="let sample of project.samples" style="position: relative;" class="sample">
-        <img  [lazyLoad]="sample.imageUrl" [defaultImage]="imageUrl" alt="{{ sample.name }}" />
+      <div *ngFor="let sample of project.samples; let i=index" style="position: relative;" class="sample">
+        <img (click)="previewImage(i)"  [lazyLoad]="sample.imageUrl" [defaultImage]="imageUrl" alt="{{ sample.name }}" />
         <h3>{{ sample.name }}</h3>
       </div>
     </div>

@@ -17,11 +17,18 @@ import {FormsModule} from '@angular/forms'
 import { Subscription } from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import ImageViewer from 'awesome-image-viewer';
+import {
+  MatBottomSheet,
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 
 @Component({
   selector: 'app-view-poc',
   standalone: true,
-  imports: [MatChipsModule,MatButtonModule, CommonModule, MatProgressSpinnerModule, MatCardModule, MatListModule, MatDividerModule, MatButtonToggleModule,FormsModule,MatBadgeModule, MatIconModule, NgOptimizedImage, LazyLoadImageModule],
+  imports: [MatChipsModule,MatButtonModule, CommonModule, MatProgressSpinnerModule, MatCardModule, MatListModule, MatDividerModule, MatButtonToggleModule,FormsModule,MatBadgeModule, MatIconModule, NgOptimizedImage, LazyLoadImageModule, MatBottomSheetModule],
   templateUrl: './view-poc.component.html',
   styleUrl: './view-poc.component.css'
 })
@@ -38,7 +45,7 @@ export class ViewPocComponent implements OnInit, OnDestroy{
   currentScreenIndex = 0;
   lazy = true;
   imageUrl='https://expo-server-theta.vercel.app/public/images/loading.gif'
-  constructor(private router:Router, private route:ActivatedRoute, private pocService:PocService, private breakpointObserver: BreakpointObserver,private sanitizer: DomSanitizer,private elementRef: ElementRef){
+  constructor(private router:Router, private route:ActivatedRoute, private pocService:PocService, private breakpointObserver: BreakpointObserver,private sanitizer: DomSanitizer,private elementRef: ElementRef, private _bottomSheet:MatBottomSheet){
     
   }
   togglePlay(): void {
@@ -59,6 +66,12 @@ export class ViewPocComponent implements OnInit, OnDestroy{
     }
   }
 
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetComponent,{
+      data:this.project.website
+    });
+  }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') || '';
     
@@ -67,6 +80,9 @@ export class ViewPocComponent implements OnInit, OnDestroy{
       this.safeWs = this.sanitizer.bypassSecurityTrustResourceUrl(this.project.website);
       this.selectedScreen = this.project.samples[0].imageUrl;
       this.isLoading = false;
+      if(this.project.isLive && this.project.isMobileOnly && this.isMobile){
+        this.openBottomSheet()
+      }
       
     }, (error) => {
       console.error(error);
@@ -79,6 +95,18 @@ export class ViewPocComponent implements OnInit, OnDestroy{
 
   }
 
+  previewImage(index:number){
+    
+    new ImageViewer({
+      images: this.project.samples.map(i=>{
+        return {
+          mainUrl:i.imageUrl,
+          description:i.name
+        }
+      }),
+      currentSelected: index
+  });
+  }
   
 
   openExternal(link:string){
