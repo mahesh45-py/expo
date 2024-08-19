@@ -1,0 +1,164 @@
+.details-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+ 
+  
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .stack {
+    margin: 5px;
+  }
+  
+  .project-description {
+    margin-bottom: 20px;
+  }
+  
+  .samples-section {
+    margin-bottom: 20px;
+  }
+  
+  .sample-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  
+  .sample {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .sample img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .sample h3 {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .sample p {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+  
+  .features-section {
+    margin-bottom: 20px;
+  }
+  
+  .features-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .features-section li {
+    margin-bottom: 10px;
+  }
+  
+  .actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+
+  @media (max-width: 768px) { /* adjust the breakpoint as needed */
+    .project-header .mat-headline-3{
+      margin-bottom: 5px;
+    }
+    .project-header {
+      flex-direction: column;
+    }
+    .tech-stack{
+
+      flex-wrap: nowrap;
+    }
+    .sample img {
+      height: 270px;
+    }
+    
+  }
+
+  .centered {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* flex-direction:column; */
+    /* height: 100vh; */
+    margin: 0;
+  }
+  
+  .phone-container {
+    width: 375px;
+    height: 700px;
+    position: relative;
+  }
+  
+  .phone-background {
+    background: url('../../../assets/phone.png') no-repeat center center;
+    background-size: contain;
+    width: 121%;
+    height: 108%;
+    position: absolute;
+    top: -28px;
+    left: -41px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .phone-container iframe {
+    width: 81%;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 9%;
+    border: none;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+    z-index: 0;
+    border-radius: 25px;
+  }
+  .phone-container img {
+    width: 311px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 8%;
+    border: none;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
+    z-index: 0;
+    border-radius: 25px;
+  }
+  
+  
+  .mat-button-toggle-checked {
+    transform: scale(1.001); /* grow effect */
+    background-color: rgba(245, 110, 209, 0.333);
+    box-shadow: 0 0 -30px rgba(245, 110, 210, 0.1), 0 0 30px rgba(245, 110, 210, 0.1), 0 0 30px rgba(245, 110, 210, 0.1); /* violet-pink neon shadow effect */
+    animation: fade-in 0.3s ease-in; /* add fade-in animation */
+  }
+  
+  

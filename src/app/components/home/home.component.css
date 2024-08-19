@@ -1,9 +1,17 @@
 .example-card {
-    width: 100%;
+    width: 95%;
     margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+  .example-card {
+    transition: transform 0.3s, box-shadow 0.3s; /* add transition effect */
+  }
   
+  .example-card:hover {
+    cursor: pointer;
+    transform: scale(1.001); /* grow effect */
+    box-shadow: 0 0 30px rgba(245, 110, 210, 0.1), 0 0 10px rgba(245, 110, 210, 0.1), 0 0 5px rgba(245, 110, 210, 0.1); /* violet-pink neon shadow effect */
+  }
   .tech-stack {
     display: flex;
     flex-wrap: wrap;

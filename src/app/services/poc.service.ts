@@ -24,4 +24,14 @@ export class PocService {
       return i
     }))
   } 
+
+  getProjectById(id:string):Observable<Project>{
+    return this.http.get<Project>(this.projects+'/'+id).pipe(map((i)=>{
+      i.techStack.map((stack)=>{
+        stack.imageUrl = this.baseUrl + stack.imageUrl;
+        return stack;
+      })
+      return i;
+    }))
+  }
 }

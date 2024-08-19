@@ -16,7 +16,7 @@
             <div (click)="openPoc(project._id)" class="card-content" [ngClass]="{'align-center':isMobile}" fxLayout="row" fxLayout.xs="column">
                 <div *ngIf="!isMobile" class="description" fxFlex="60" fxFlex.xs="100">
                     <p>
-                        {{ project.description | truncate:400 }}
+                        {{ project.description | truncate:350 }}
                     </p>
                 </div>
                 <div class="thumbnail " fxFlex="35" fxFlex.xs="100" *ngIf="project.samples.length > 0">
