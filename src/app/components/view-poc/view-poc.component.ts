@@ -18,6 +18,8 @@ import { Subscription } from 'rxjs';
 import {MatIconModule} from '@angular/material/icon';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import ImageViewer from 'awesome-image-viewer';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -28,7 +30,7 @@ import { BottomSheetComponent } from '../bottom-sheet/bottom-sheet.component';
 @Component({
   selector: 'app-view-poc',
   standalone: true,
-  imports: [MatChipsModule,MatButtonModule, CommonModule, MatProgressSpinnerModule, MatCardModule, MatListModule, MatDividerModule, MatButtonToggleModule,FormsModule,MatBadgeModule, MatIconModule, NgOptimizedImage, LazyLoadImageModule, MatBottomSheetModule],
+  imports: [MatChipsModule,MatButtonModule, CommonModule, MatProgressSpinnerModule, MatCardModule, MatListModule, MatDividerModule, MatButtonToggleModule,FormsModule,MatBadgeModule, MatIconModule, NgOptimizedImage, LazyLoadImageModule, MatBottomSheetModule, NgxSkeletonLoaderModule],
   templateUrl: './view-poc.component.html',
   styleUrl: './view-poc.component.css'
 })
@@ -59,9 +61,12 @@ export class ViewPocComponent implements OnInit, OnDestroy{
   playScreens(): void {
     if (this.isPlaying) {
       setTimeout(() => {
-        this.currentScreenIndex = (this.currentScreenIndex + 1) % this.project.samples.length;
-        this.selectedScreen = this.project.samples[this.currentScreenIndex].imageUrl;
-        this.playScreens(); // Recursively call to continue playing
+        if(this.isPlaying){
+          this.currentScreenIndex = (this.currentScreenIndex + 1) % this.project.samples.length;
+          this.selectedScreen = this.project.samples[this.currentScreenIndex].imageUrl;
+          this.playScreens(); // Recursively call to continue playing
+        }
+        
       }, 1000 * 5); // Change the screen every 2 seconds
     }
   }

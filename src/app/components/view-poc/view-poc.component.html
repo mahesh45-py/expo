@@ -1,8 +1,97 @@
 <div class="details-container">
   <div *ngIf="isLoading">
     <!-- Spinner component -->
-    <mat-spinner diameter="30"></mat-spinner>
-    <p>Loading...</p>
+    <div class="project-header">
+      <div class="mat-headline-3">
+          <ngx-skeleton-loader count="1" animation="pulse" [theme]="{
+          'border-radius': '5px',
+          width:'350px',
+          height: '40px',
+          'background-color': '#4e4e4e',
+          border: '1px solid #323232',
+          'animation-duration': '2s'
+        }">
+        </ngx-skeleton-loader>
+      </div>
+      <div class="tech-stack">
+        <ngx-skeleton-loader count="1" class="stack" animation="pulse" [theme]="{
+          'border-radius': '20px',
+          width:'100px',
+          height: '30px',
+          'padding-left':'10px',
+          'background-color': '#4e4e4e',
+          border: '1px solid #323232',
+          'animation-duration': '2s'
+        }">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader count="1" class="stack" animation="pulse" [theme]="{
+          'border-radius': '20px',
+          width:'100px',
+          height: '30px',
+          'background-color': '#4e4e4e',
+          'padding-left':'10px',
+          border: '1px solid #323232',
+          'animation-duration': '2s'
+        }">
+        </ngx-skeleton-loader>
+        <ngx-skeleton-loader count="1" class="stack" animation="pulse" [theme]="{
+          'border-radius': '20px',
+          width:'100px',
+          height: '30px',
+          'background-color': '#4e4e4e',
+          'padding-left':'10px',
+          border: '1px solid #323232',
+          'animation-duration': '2s'
+        }">
+        </ngx-skeleton-loader>
+
+      </div>
+    </div>
+
+    <div class="project-description">
+      <div>
+        <ngx-skeleton-loader count="1" animation="pulse" [theme]="{
+          'border-radius': '5px',
+          width:'200px',
+          height: '20px',
+          'background-color': '#4e4e4e',
+          border: '1px solid #323232',
+          'animation-duration': '2s'
+        }">
+        </ngx-skeleton-loader>
+      </div>
+      <p class="mat-body-1">
+        <ngx-skeleton-loader count="7" animation="pulse" [theme]="{
+          'border-radius': '5px',
+          
+          height: '10px',
+          'background-color': '#4e4e4e',
+          border: '1px solid #323232',
+          'animation-duration': '2s'
+        }">
+        </ngx-skeleton-loader>
+      </p>
+    </div>
+    <ngx-skeleton-loader count="1" animation="pulse" [theme]="{
+      'border-radius': '5px',
+      width:'200px',
+      height: '20px',
+      'background-color': '#4e4e4e',
+      border: '1px solid #323232',
+      'animation-duration': '2s'
+    }">
+    </ngx-skeleton-loader>
+    <ngx-skeleton-loader count="1" animation="pulse" [theme]="{
+      'border-radius': '5px',
+      
+      height: '500px',
+      'background-color': '#4e4e4e',
+      border: '1px solid #a8a8a8',
+      'animation-duration': '2s'
+    }">
+    </ngx-skeleton-loader>
+
+    
   </div>
   @if (!isLoading) {
   <div class="project-header">
@@ -21,38 +110,41 @@
   <h2 class="mat-h1">Samples</h2>
   <mat-card appearance="outlined" *ngIf="!isMobile">
     <mat-card-content class="centered">
-      
-      
+
+
       <section>
-        
+
         <mat-button-toggle-group vertical="true" [(ngModel)]="selectedScreen" aria-label="Font Style">
           @for (sample of project.samples; track $index) {
-            <mat-button-toggle color="primary" [value]="sample.imageUrl">{{sample.name}}</mat-button-toggle>
+          <mat-button-toggle color="primary" [value]="sample.imageUrl">{{sample.name}}</mat-button-toggle>
           }
-          
-          <mat-button-toggle *ngIf="project.isLive && project.isMobileOnly" value="live"> Live View (Experimental)</mat-button-toggle>
-          
+
+          <mat-button-toggle *ngIf="project.isLive && project.isMobileOnly" value="live"> Live View
+            (Experimental)</mat-button-toggle>
+
         </mat-button-toggle-group>
-        
+
       </section>
       <button (click)="togglePlay()" mat-icon-button aria-label="A Button with Play/Pause Icon">
         <mat-icon aria-hidden="false" aria-label="Example home icon">{{playIcon}}</mat-icon>
       </button>
       <div class="phone-container">
         <div class="phone-background"></div>
-        
-        <img  [lazyLoad]="selectedScreen" [defaultImage]="imageUrl" *ngIf="project.isMobileOnly && selectedScreen!='live'" [src]="selectedScreen" alt="">
-        <iframe *ngIf="project.isLive && project.isMobileOnly && selectedScreen=='live'" [src]="safeWs" style="font-size: 0.8em;"></iframe>
-        
+
+        <img [lazyLoad]="selectedScreen" [defaultImage]="imageUrl"
+          *ngIf="project.isMobileOnly && selectedScreen!='live'" [src]="selectedScreen" alt="">
+        <iframe *ngIf="project.isLive && project.isMobileOnly && selectedScreen=='live'" [src]="safeWs"
+          style="font-size: 0.8em;"></iframe>
+
       </div>
-      
+
     </mat-card-content>
   </mat-card>
   <div *ngIf="isMobile" class="samples-section">
-    
+
     <div class="sample-grid">
       <div *ngFor="let sample of project.samples; let i=index" style="position: relative;" class="sample">
-        <img (click)="previewImage(i)"  [lazyLoad]="sample.imageUrl" [defaultImage]="imageUrl" alt="{{ sample.name }}" />
+        <img (click)="previewImage(i)" [lazyLoad]="sample.imageUrl" [defaultImage]="imageUrl" alt="{{ sample.name }}" />
         <h3>{{ sample.name }}</h3>
       </div>
     </div>
